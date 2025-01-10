@@ -14,3 +14,38 @@ model User {
   avatar                          String?
   created_at                      DateTime              @default(now())
 }
+
+
+model FeedbackPost {
+  id                              String                @id @default(uuid())
+  title                           String
+  description                     String
+  category                        Category              @relation(fields: [category_id],references: [id])
+  category_id                     String   //reference to Category id field
+  status                          Status                @default(IDEA)
+  user                            User                  @relation(fields: [author_id],references: [id])                
+  author_id                       String   //reference to User id field
+  created_at                      DateTime              @default(now())
+  updated_at                      DateTime              @updatedAt 
+}
+
+model Upvote {
+  id                              String                @id @default(uuid())
+  user_id                         String
+  feedbackPost_id                 String
+  user                            User                  @relation(fields: [userId], references: [id])
+  feedbackPost                    FeedbackPost          @relation(fields: [feedbackPostId], references: [id])
+  @@unique([userId, feedbackPostId]) 
+}
+
+model Category {
+  id                              String                @id @default(uuid())
+  name                            String                @unique
+  feedbackPosts                   FeedbackPost[]
+}
+
+model Status {
+  id                              String                @id @default(uuid())
+  name                            String                @unique
+  feedbackPosts                   FeedbackPost[]
+}
