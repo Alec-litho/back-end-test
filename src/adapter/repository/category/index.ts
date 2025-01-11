@@ -5,19 +5,19 @@ import { buildGet, Get } from './get'
 
 type Params = Pick<AdapterParams, 'db'>
 
-export type UpvoteRepository = {
+export type CategoryRepository = {
   create: Create,
-  deleteUpvote:Delete,
+  deleteCategory:Delete,
   get:Get
 }
-export const buildUpvoteRepository = (params: Params): UpvoteRepository=>{
+export const buildCategoryRepository = (params: Params): CategoryRepository=>{
   const create = buildCreate(params)
-  const deleteUpvote = buildDelete(params)
+  const deleteCategory = buildDelete(params)
   const get = buildGet(params)
 
   return {
     create,
-    deleteUpvote,
+    deleteCategory,
     get
   }
 }
