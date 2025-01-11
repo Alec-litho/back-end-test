@@ -7,14 +7,14 @@ import { buildGet, Get} from './get'
 
 type Params = Pick<AdapterParams, 'db'>
 
-export type UserRepository = {
+export type FeedbackPostRepository = {
   create: Create,
   delete: Delete,
   get: Get,
   list: List,
   update: Update,
 }
-export const buildUserRepository = (params: Params): UserRepository=>{
+export const buildFeedbackPostRepository = (params: Params): FeedbackPostRepository=>{
   const create = buildCreate(params)
   const deleteUser = buildDelete(params)
   const get = buildGet(params)
