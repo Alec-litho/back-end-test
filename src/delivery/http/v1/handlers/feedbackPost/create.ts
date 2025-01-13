@@ -8,7 +8,7 @@ export type CreatePost = (req: Request, res: Response)=>Promise<Response>
 export const buildCreatePost = ({feedbackPost}: Params): Register=>{
   return async (req, res)=>{
     const data = await feedbackPost.create({
-      author_id: req.name?.id,
+      author_id: req.body.name?.id,
       title: req.body.title,
       description: req.body.description,
       category_name: req.body.category_name,
