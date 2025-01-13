@@ -8,7 +8,6 @@ export type CategoryUseCase = {
 
 export const buildCategoryUseCase = (params: UseCaseParams): CategoryUseCase => {
   const getAll = buildGetAll(params);
-
   return {
     getAll
   }

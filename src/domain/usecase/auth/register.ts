@@ -42,6 +42,7 @@ export const buildRegister = ({ adapter }: UseCaseParams): Register => (
     });
 
     if (!user) {
+      console.log(user)
       throw new InternalError();
     }
 
