@@ -14,7 +14,7 @@ export type StatusRepository = {
 }
 export const buildStatusRepository = (params: Params): StatusRepository=>{
   const create = buildCreate(params)
-  const deleteStatus = buildDelete(params)
+  const deleteStatus = buildDelete(params) 
   const get = buildGet(params)
   const getAll = buildGetAll(params)
 
