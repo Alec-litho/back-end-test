@@ -30,9 +30,13 @@ model FeedbackPost {
   author_id   String //reference to User id field
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
-  Upvote      Upvote[]
+  upvotes      Upvote[]
 }
-
+model Category {
+  id            String         @id @default(uuid())
+  name          String         @unique
+  feedbackPosts FeedbackPost[]
+}
 model Upvote {
   id              String       @id @default(uuid())
   user_id         String
@@ -41,12 +45,6 @@ model Upvote {
   feedbackPost    FeedbackPost @relation(fields: [feedbackPost_id], references: [id])
 
   @@unique([user_id, feedbackPost_id])
-}
-
-model Category {
-  id            String         @id @default(uuid())
-  name          String         @unique
-  feedbackPosts FeedbackPost[]
 }
 
 model Status {

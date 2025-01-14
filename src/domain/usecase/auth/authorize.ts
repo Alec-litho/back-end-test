@@ -15,7 +15,7 @@ export const buildAuthorize = ({
   service,
   adapter
 }: UseCaseParams): Authorize => {
-  return async ({email, password}) => {
+  return async ({email, password}) => { 
     
     let user = await service.auth.checkCredentials({
       email,

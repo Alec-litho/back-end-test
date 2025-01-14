@@ -24,20 +24,20 @@ CREATE TABLE "FeedbackPost" (
 );
 
 -- CreateTable
+CREATE TABLE "Category" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Upvote" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "feedbackPost_id" TEXT NOT NULL,
 
     CONSTRAINT "Upvote_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Category" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-
-    CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -52,10 +52,10 @@ CREATE TABLE "Status" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Upvote_user_id_feedbackPost_id_key" ON "Upvote"("user_id", "feedbackPost_id");
+CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
+CREATE UNIQUE INDEX "Upvote_user_id_feedbackPost_id_key" ON "Upvote"("user_id", "feedbackPost_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Status_name_key" ON "Status"("name");

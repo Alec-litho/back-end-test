@@ -5,8 +5,8 @@ http:
 postgres:
   user: postgres
   password: '20052020'
-  db: dev
-  host: 127.0.0.1
+  db: test
+  host: "localhost"
   port: 5432
 
 jwt:

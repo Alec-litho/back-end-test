@@ -11,7 +11,7 @@ export const buildCheckCredentials = ({userRepository}: Adapter): CheckCredentia
   return async ({email, password}) => {
     const user = await userRepository.get({
       where: {
-        email: {
+        email: { 
           mode: 'insensitive',
           equals: email
         },
@@ -23,15 +23,19 @@ export const buildCheckCredentials = ({userRepository}: Adapter): CheckCredentia
         id: true,
         email: true,
         avatar: true,
-        created_at: true
+        created_at: true,
+        password:true
+
       }
     }) 
+    console.log('auth', user, password)
 
     if (!user || !user.password) {
       return null
     }
 
     const passwordsSame = await bcrypt.compare(password, user?.password)
+    console.log('auth-----', passwordsSame)
 
     if (!passwordsSame) {
       return null

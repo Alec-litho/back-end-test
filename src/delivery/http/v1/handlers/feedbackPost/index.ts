@@ -198,6 +198,9 @@ const buildRegisterRoutes = (methods: FeedbackPostMethods) => (root: Express.Rou
  *                 category_id:
  *                   type: string
  *                   description: The ID of the category to which the feedback post belongs
+ *                 status_id:
+ *                   type: string
+ *                   description: The ID of the status to which the feedback post belongs
  *                 created_at:
  *                   type: string
  *                   format: date-time
