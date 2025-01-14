@@ -37,7 +37,7 @@ export const refreshRules = [
   validateSchema
 ];
 
-export const getMeRules = [
+export const authRules = [
   header('authorization').exists().notEmpty().isString(),
   authRequired({}),
   validateSchema

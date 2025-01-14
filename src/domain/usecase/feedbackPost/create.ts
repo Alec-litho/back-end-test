@@ -43,7 +43,8 @@ export const buildCreatePost = ({adapter}: UseCaseParams): CreatePost=>{
         title,
         description,
         category_id:category.id,
-        status_id: status.id
+        status_id: status.id,
+        category: 
       }
     })
 

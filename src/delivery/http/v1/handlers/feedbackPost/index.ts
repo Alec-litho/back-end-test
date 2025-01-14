@@ -3,7 +3,7 @@ import Express from 'express';
 import { IHandler } from '../types';
 import { createRouteHandler } from '../../routeHandler';
 import { buildCreatePost, CreatePost } from './create';
-import { authorizationRules } from '../auth/rules';
+import { authRules } from '../auth/rules';
 import { buildDeletePost, DeletePost } from './delete';
 import { buildUpdatePost, UpdatePost } from './update';
 import { buildGetList, GetList } from './getList';
@@ -214,7 +214,7 @@ const buildRegisterRoutes = (methods: FeedbackPostMethods) => (root: Express.Rou
  *       500:
  *         description: Server error while creating the feedback post
  */
-  namespace.post('/', authorizationRules, createRouteHandler(methods.createPost));
+  namespace.post('/', authRules, createRouteHandler(methods.createPost));
   /**
  * @openapi
  * /feedbackPost/{post_id}:
@@ -247,7 +247,7 @@ const buildRegisterRoutes = (methods: FeedbackPostMethods) => (root: Express.Rou
  *         description: Server error or failure during deletion
  */
 
-  namespace.delete('/:post_id', createRouteHandler(methods.deletePost));
+  namespace.delete('/:post_id', authRules, createRouteHandler(methods.deletePost));
   /**
  * @openapi
  * /feedbackPost/{post_id}:
@@ -320,7 +320,7 @@ const buildRegisterRoutes = (methods: FeedbackPostMethods) => (root: Express.Rou
  *       '500':
  *         description: Server error while updating the feedback post
  */
-  namespace.patch('/:post_id', createRouteHandler(methods.updatePost));
+  namespace.patch('/:post_id', authRules, createRouteHandler(methods.updatePost));
 
   root.use('/feedbackPost', namespace);
 };

@@ -4,7 +4,7 @@ import { Refresh, buildRefresh } from './refresh';
 import { Authorize, buildAuthorize } from './authorize';
 import { Register, buildRegister } from './register';
 import { DeliveryParams } from '@/delivery/types';
-import { authorizationRules, getMeRules, refreshRules } from './rules';
+import { authorizationRules, authRules, getMeRules, refreshRules } from './rules';
 import { createRouteHandler } from '../../routeHandler';
 import { IHandler } from '../types';
 
@@ -135,7 +135,7 @@ const buildRegisterRoutes = (methods: AuthMethods) => {
      */
     namespace.get(
       '/me', 
-      getMeRules, 
+      authRules, 
       createRouteHandler(methods.getMe)
     )
 
