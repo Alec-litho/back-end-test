@@ -1,14 +1,18 @@
 import { UseCaseParams } from '@/domain/usecase/types';
-import { buildGetAll, GetAll } from '@/adapter/repository/status/getAll';
+import { buildCreateStatus, CreateStatus } from './create';
+import { buildGetStatuses, GetStatuses } from './getAll';
 
 export type StatusUseCase = {
-  getAll: GetAll;
+  getAll: GetStatuses;
+  create: CreateStatus
 }
 
 export const buildUpvoteUseCase = (params: UseCaseParams): StatusUseCase => {
-  const getAll = buildGetAll(params);
+  const getAll = buildGetStatuses(params);
+  const create = buildCreateStatus(params)
   return {
-    getAll
+    getAll,
+    create
   }
 }
  

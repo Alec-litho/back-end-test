@@ -1,15 +1,20 @@
-import { GetAll, buildGetAll } from '@/adapter/repository/category/getAll';
+import { GetCategories, buildGetCategories } from './getAll';
 import { UseCaseParams } from '@/domain/usecase/types';
+import { buildCreateCategory, CreateCategory } from './create';
 
 
 export type CategoryUseCase = {
-  getAll: GetAll;
+  getAll: GetCategories;
+  create: CreateCategory
 }
 
 export const buildCategoryUseCase = (params: UseCaseParams): CategoryUseCase => {
-  const getAll = buildGetAll(params);
+  const getAll = buildGetCategories(params);
+  const create = buildCreateCategory(params);
+
   return {
-    getAll
+    getAll,
+    create
   }
 }
  

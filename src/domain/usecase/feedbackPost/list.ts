@@ -1,12 +1,12 @@
 import {UseCaseParams} from '@/domain/usecase/types';
 import { NotFoundError } from '@/domain/errors';
 import { IFeedbackPost } from '@/domain/entity/feedbackPost';
-import { Prisma, Status } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 
 export type List = (params:{
   category_name?:string
-  status?:Status
+  status_name?:string
   sortby?:'date_asc'|'date_desc'|'upvote_asc'|'upvote_desc'
   skip?:number
   take?:number
@@ -14,7 +14,7 @@ export type List = (params:{
 
 
 export const buildList = ({adapter}: UseCaseParams): List=>{
-  return async ({category_name,status,sortby,skip,take})=>{
+  return async ({category_name,status_name,sortby,skip,take})=>{
     const category = await adapter.categoryRepository.get({
       where:{
         name:category_name
@@ -24,7 +24,7 @@ export const buildList = ({adapter}: UseCaseParams): List=>{
     const queryParams : Prisma.FeedbackPostFindManyArgs = {
       where:{
         ...(category_name ? {category_id:category.id}:{}),
-        ...(status && {status})
+        ...(status_name && {status_name})
       },
       skip,
       take,
