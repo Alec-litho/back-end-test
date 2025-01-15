@@ -7,6 +7,7 @@ export type CreateCategory = (params:{
 
 export const buildCreateCategory = ({adapter}: UseCaseParams): CreateCategory=>{
   return async ({category_name})=>{
+    console.log("category",category_name)
     const category = await adapter.categoryRepository.create({
       data:{
         name:category_name

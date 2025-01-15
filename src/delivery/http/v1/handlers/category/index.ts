@@ -1,15 +1,15 @@
 import { DeliveryParams } from '@/delivery/types';
 import Express from 'express';
-import { buildGetAll, GetAll } from './getAll';
+import { buildGetList, GetList } from './list';
 import { createRouteHandler } from '../../routeHandler';
 import { IHandler } from '../types';
 import { buildCreateCategory, CreateCategory } from './create';
-import { authorizationRules, authRules } from '../auth/rules';
+import { authRules } from '../auth/rules';
 
 type Params = Pick<DeliveryParams, 'category'>;
 
 export type CategoryMethods = {
-  getAll: GetAll;
+  getList: GetList;
   create: CreateCategory
 };
 
@@ -47,7 +47,7 @@ const buildRegisterRoutes =
      *         description: categories not found
      */
     
-    namespace.get('/', createRouteHandler(methods.getAll));
+    namespace.get('/', createRouteHandler(methods.getList));
     /**
  * @openapi
  * /category:
@@ -93,11 +93,11 @@ const buildRegisterRoutes =
   };
 
 export const buildCategoryHandler = (params: Params): IHandler => {
-  const getAll = buildGetAll(params);
+  const getList = buildGetList(params);
   const create = buildCreateCategory(params)
   return { registerRoutes: buildRegisterRoutes(
     { 
-      getAll,
+      getList,
       create
     }) 
   };

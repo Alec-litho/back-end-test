@@ -2,7 +2,7 @@ import { AdapterParams } from '@/adapter/types'
 import { buildCreate, Create } from './create'
 import { buildDelete, Delete } from './delete'
 import { buildGet, Get } from './get'
-import { buildGetAll, GetAll } from './getAll'
+import { buildGetList, GetList } from './list'
 
 type Params = Pick<AdapterParams, 'db'>
 
@@ -10,18 +10,18 @@ export type CategoryRepository = {
   create: Create,
   deleteCategory:Delete,
   get:Get
-  getAll: GetAll
+  list: GetList
 }
 export const buildCategoryRepository = (params: Params): CategoryRepository=>{
   const create = buildCreate(params)
   const deleteCategory = buildDelete(params)
   const get = buildGet(params)
-  const getAll = buildGetAll(params)
+  const list = buildGetList(params)
 
   return {
     create,
     deleteCategory,
     get,
-    getAll
+    list
   }
 }

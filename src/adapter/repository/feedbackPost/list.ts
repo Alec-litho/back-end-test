@@ -6,8 +6,8 @@ type Params = Pick<AdapterParams, 'db'>
 
 export type List = (params:Prisma.FeedbackPostFindManyArgs)=>Promise<Array<IFeedbackPost> | null | never>
 export const buildList = ({db}: Params): List =>{
-  return async (getParams )=>{
-    const posts = await db.client.feedbackPost.findMany(getParams) as Array<IFeedbackPost>
+  return async (data )=>{
+    const posts = await db.client.feedbackPost.findMany(data) as Array<IFeedbackPost>
 
     return posts
   }

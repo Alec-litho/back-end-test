@@ -3,7 +3,7 @@ import Express from 'express';
 import { createRouteHandler } from '../../routeHandler';
 import { authorizationRules, authRules } from '../auth/rules';
 import { IHandler } from '../types';
-import { buildGetAll, GetAll } from './getAll';
+import { buildGetAll, GetAll } from './list';
 import { buildCreateStatus, CreateStatus } from './create';
 
 type Params = Pick<DeliveryParams, 'status'>;

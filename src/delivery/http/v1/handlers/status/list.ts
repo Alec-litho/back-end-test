@@ -6,7 +6,7 @@ type Params = Pick<DeliveryParams, 'status'>
 export type GetAll = (req: AuthRequest, res: Response)=>Promise<Response>
 export const buildGetAll = ({status}: Params): GetAll=>{
   return async (req, res)=>{
-    const posts = await status.getAll({});
+    const posts = await status.list();
     return res.status(200).json(posts)
   }
 }

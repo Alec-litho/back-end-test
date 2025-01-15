@@ -1,19 +1,19 @@
-import { GetCategories, buildGetCategories } from './getAll';
+import { GetCategoriesList, buildGetCategoriesList } from './list';
 import { UseCaseParams } from '@/domain/usecase/types';
 import { buildCreateCategory, CreateCategory } from './create';
 
 
 export type CategoryUseCase = {
-  getAll: GetCategories;
+  list: GetCategoriesList;
   create: CreateCategory
 }
 
 export const buildCategoryUseCase = (params: UseCaseParams): CategoryUseCase => {
-  const getAll = buildGetCategories(params);
+  const list = buildGetCategoriesList(params);
   const create = buildCreateCategory(params);
 
   return {
-    getAll,
+    list,
     create
   }
 }

@@ -4,10 +4,10 @@ import { Prisma } from '@prisma/client'
 
 type Params = Pick<AdapterParams, 'db'>
 
-export type Create = (data: Prisma.StatusCreateArgs)=>Promise<IStatus | never>
+export type StatusList = (data: Prisma.StatusFindManyArgs)=>Promise<IStatus[] | never>
 
-export const buildCreate = ({db}: Params): Create=>{
+export const buildStatusList = ({db}: Params): StatusList=>{
   return async (data)=>{
-    return await db.client.status.create(data) as IStatus
+    return await db.client.status.findMany(data) as IStatus[]
   }
 }
