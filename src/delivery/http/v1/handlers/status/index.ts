@@ -1,7 +1,7 @@
 import { DeliveryParams } from '@/delivery/types';
 import Express from 'express';
 import { createRouteHandler } from '../../routeHandler';
-import { authorizationRules } from '../auth/rules';
+import { authorizationRules, authRules } from '../auth/rules';
 import { IHandler } from '../types';
 import { buildGetAll, GetAll } from './getAll';
 import { buildCreateStatus, CreateStatus } from './create';
@@ -44,7 +44,7 @@ const buildRegisterRoutes = (methods: StatusMethods) => (
      *       404:
      *         description: categories not found
      */
-    namespace.get('/',authorizationRules,createRouteHandler(methods.getAll));
+    namespace.get('/',authRules,createRouteHandler(methods.getAll));
     /**
  * @openapi
  * /status:
@@ -84,7 +84,7 @@ const buildRegisterRoutes = (methods: StatusMethods) => (
  *       500:
  *         description: Server error while creating the feedback post
  */
-    namespace.post('/', authorizationRules, createRouteHandler(methods.create));
+    namespace.post('/', authRules, createRouteHandler(methods.create));
     root.use('/status', namespace);
   }
 );

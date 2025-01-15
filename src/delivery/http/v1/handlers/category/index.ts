@@ -4,7 +4,7 @@ import { buildGetAll, GetAll } from './getAll';
 import { createRouteHandler } from '../../routeHandler';
 import { IHandler } from '../types';
 import { buildCreateCategory, CreateCategory } from './create';
-import { authorizationRules } from '../auth/rules';
+import { authorizationRules, authRules } from '../auth/rules';
 
 type Params = Pick<DeliveryParams, 'category'>;
 
@@ -87,7 +87,7 @@ const buildRegisterRoutes =
  *       500:
  *         description: Server error while creating a category
  */
-    namespace.post('/', authorizationRules, createRouteHandler(methods.create));
+    namespace.post('/', authRules, createRouteHandler(methods.create));
 
     root.use('/category', namespace);
   };

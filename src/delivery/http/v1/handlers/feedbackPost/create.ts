@@ -18,3 +18,4 @@ export const buildCreatePost = ({feedbackPost}: Params): Register=>{
     return res.status(200).json(data);
   }
 }
+ 

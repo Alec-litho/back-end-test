@@ -2,7 +2,7 @@ import { DeliveryParams } from '@/delivery/types';
 import Express from 'express';
 import { createRouteHandler } from '../../routeHandler';
 import { buildToggleUpvote, ToggleUpvote } from './toggleUpvote';
-import { authorizationRules } from '../auth/rules';
+import { authorizationRules, authRules } from '../auth/rules';
 import { IHandler } from '../types';
 
 type Params = Pick<DeliveryParams, 'upvote'>;
@@ -44,7 +44,7 @@ const buildRegisterRoutes =
      *         description: Internal server error.
      */
 
-    namespace.get('/toggle/:post_id', authorizationRules,createRouteHandler(methods.toggleUpvote));
+    namespace.get('/toggle/:post_id', authRules,createRouteHandler(methods.toggleUpvote));
     root.use('/upvote', namespace);
   };
 
