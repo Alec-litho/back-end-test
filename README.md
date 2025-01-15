@@ -5,9 +5,9 @@
    ```
 2. Run database migrations:
    ```bash
-   npm migrate:dev
+   npm run migrate:dev
    ```
 3. Start the application:
    ```bash
-   npm start:dev
+   npm run start:dev
    ```
